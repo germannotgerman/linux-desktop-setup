@@ -1,0 +1,59 @@
+--- # Setup Linux desktop environment
+- hosts: local
+  become: yes
+
+  vars:
+    ssh_key_filename: id_rsa
+
+  roles:
+    - role: geerlingguy.java
+      java_packages:
+        - openjdk-11-jdk
+        - openjdk-11-jre
+    - role: geerlingguy.docker
+    - role: ansible-role-install-snap
+    - role: ngetchell.vscode
+      vars:
+        vscode_extension:
+          - jenkins-pipeline-linter-connector
+          - mechatroner.rainbow-csv
+          - redhat.vscode-yaml
+          - visualstudioexptteam.vscodeintellicode
+          - esbenp.prettier-vscode
+          - atlassian.atlascode
+          - eamodio.gitlens
+          - ms-azuretools.vscode-docker
+          - vscoss.vscode-ansible
+    - role: pixelart.chrome
+
+  tasks:
+  - name: install git
+    apt:
+      name: git
+      state: latest
+  - name: generate SSH key "{{ssh_key_filename}}"
+    openssh_keypair:
+      path: "~/.ssh/{{ssh_key_filename}}"
+      type: rsa
+      size: 4096
+      state: present
+      force: no
+  - name: Install Spotify
+    snap:
+      name: Spotify
+      state: present
+  - name: Install Android Studio
+    snap:
+      name: android-studio
+      classic: yes
+  - name: Install Opera
+    snap:
+      name: opera
+      state: present
+  - name: Install beekeeper
+    snap:
+      name: beekeeper-studio
+  - name: Install postman
+    snap:
+      name: postman
+      state: present
