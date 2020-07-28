@@ -59,3 +59,15 @@
     snap:
       name: postman
       state: present
+  - name: Install Slack
+    snap:
+      name: slack
+      classic: yes
+  - name: Install Skype
+    snap:
+      name: skype
+      classic: yes
+  - name: Install Teams for Linux
+    snap:
+      name: teams-for-linux
+      state: present
