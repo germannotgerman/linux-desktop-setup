@@ -26,6 +26,7 @@
           - ms-azuretools.vscode-docker
           - vscoss.vscode-ansible
     - role: pixelart.chrome
+    - role: viasite-ansible.zsh
 
   tasks:
   - name: install git
