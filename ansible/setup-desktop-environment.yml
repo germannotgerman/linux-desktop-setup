@@ -1,5 +1,6 @@
 --- # Setup Linux desktop environment
-- hosts: local
+- hosts: localhost
+  connection: local
   become: yes
 
   vars:
