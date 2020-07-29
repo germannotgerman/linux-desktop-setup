@@ -12,11 +12,11 @@
         - openjdk-11-jdk
         - openjdk-11-jre
     - role: geerlingguy.docker
-    - role: ansible-role-install-snap
+    - role: don_rumata.ansible_role_install_snap
     - role: ngetchell.vscode
       vars:
         vscode_extension:
-          - jenkins-pipeline-linter-connector
+          - janjoerke.jenkins-pipeline-linter-connector
           - mechatroner.rainbow-csv
           - redhat.vscode-yaml
           - visualstudioexptteam.vscodeintellicode
@@ -26,23 +26,15 @@
           - ms-azuretools.vscode-docker
           - vscoss.vscode-ansible
     - role: pixelart.chrome
-    - role: viasite-ansible.zsh
 
   tasks:
   - name: install git
     apt:
       name: git
       state: latest
-  - name: generate SSH key "{{ssh_key_filename}}"
-    openssh_keypair:
-      path: "~/.ssh/{{ssh_key_filename}}"
-      type: rsa
-      size: 4096
-      state: present
-      force: no
   - name: Install Spotify
     snap:
-      name: Spotify
+      name: spotify
       state: present
   - name: Install Android Studio
     snap:
